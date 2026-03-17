@@ -1,0 +1,40 @@
+.menu-toggle {
+  /* menu toggle on the right side */
+
+  float    : right;
+  width    : 25px; height : @inner-height;
+  position : relative;
+  z-index  : 9; font-size: @inner-height;
+  color: @headings-color;
+
+  &:hover { cursor: pointer; }
+  .entypo { vertical-align: top; }
+
+  .icon {
+    transition-duration: @fast-transition;
+    margin-top: -1px; top: 15px;
+
+    &, &:before, &:after {
+      position: absolute; left: 0;
+      height: 2px; width: inherit;
+      background-color: @headings-color;
+    }
+
+    &:before, &:after {
+      .transform-hack(true);
+      transition-duration: @fast-transition*2;
+      content: '';
+    }
+
+    &:before { top: -8px; }
+    &:after { top: 8px; }
+  }
+
+  &.open .icon {
+    background-color: transparent;
+
+    &:before, &:after { top: 0; }
+    &:before { transform: rotate(-45deg); }
+    &:after { transform: rotate(45deg); }
+  }
+}
