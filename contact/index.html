@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta name="description" content="">
-	<meta name="author" content="Samuel Fitzgerald">
-	<link rel="shortcut icon" href="../images/Samuel-UXFavicon.jpg">
-    
+    <meta name="description" content="">
+    <meta name="author" content="Samuel Fitzgerald">
+    <link rel="shortcut icon" href="../images/Samuel-UXFavicon.jpg">
+
     <title>Sam's Digital Practice - Contact</title>
- 
-     <!-- Google Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic|Oxygen:400,700,300" rel="stylesheet" type="text/css">
-    
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic|Oxygen:400,700,300" rel="stylesheet" type="text/css">
+
     <!-- FRAMEWORK CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-    
+
     <!-- FONT AWESOME ICONS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
@@ -24,9 +24,9 @@
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/responsive.css" rel="stylesheet">
-    
+
     <noscript>
-    <link rel="stylesheet" type="text/css" href="../css/fallback.css" />
+        <link rel="stylesheet" type="text/css" href="../css/fallback.css" />
     </noscript>
 
     <!-- IE9 Fallback -->
@@ -35,16 +35,277 @@
     <![endif]-->
 
     <!-- Modernizr -->
-    <script src="../js/vendor/modernizr.custom.js"></script>    
+    <script src="../js/vendor/modernizr.custom.js"></script>
+
+    <style>
+        #contact-form {
+            position: relative;
+            z-index: 2;
+        }
+
+        #contact-form .container.md-padding {
+            padding-top: 55px;
+            padding-bottom: 45px;
+        }
+
+        .contact-form {
+            position: relative;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+            padding: 36px 34px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .contact-form .section-title {
+            margin-bottom: 20px;
+        }
+
+        .contact-form .section-title h2 {
+            margin: 0;
+        }
+
+        .form-help-text {
+            margin: 0 0 22px;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .form-status-inline {
+            display: none;
+            margin: 0 0 20px;
+            padding: 13px 16px;
+            border-radius: 3px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .form-status-inline.show {
+            display: block;
+        }
+
+        .form-status-inline.success {
+            background: #edf8f1;
+            color: #2d7d46;
+            border: 1px solid #cfead7;
+        }
+
+        .form-status-inline.error {
+            background: #fff1f0;
+            color: #b13c34;
+            border: 1px solid #f1d0cc;
+        }
+
+        #contactForm .input-field {
+            margin-top: 0;
+            margin-bottom: 18px;
+        }
+
+        #contactForm .input-field label {
+            position: static;
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-size: 14px;
+            line-height: 1.4;
+            transform: none;
+            -webkit-transform: none;
+        }
+
+        #contactForm input[type="text"],
+        #contactForm input[type="email"],
+        #contactForm textarea {
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+            padding: 12px 14px;
+            border: 1px solid #d8d8d8;
+            border-radius: 3px;
+            background: #fff;
+            box-shadow: none;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        #contactForm textarea {
+            min-height: 160px;
+            resize: vertical;
+        }
+
+        #contactForm input:focus,
+        #contactForm textarea:focus {
+            border-color: #555;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+        }
+
+        #contactForm .field-error {
+            display: none;
+            margin-top: 6px;
+            color: #b13c34;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        #contactForm .input-field.has-error .field-error {
+            display: block;
+        }
+
+        #contactForm .input-field.has-error input,
+        #contactForm .input-field.has-error textarea {
+            border-color: #cc6d64;
+        }
+
+        .form-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 5px;
+        }
+
+        .form-actions .btn {
+            min-width: 160px;
+        }
+
+        .submit-note {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .contact-modal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.58);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .contact-modal.show {
+            display: flex !important;
+        }
+
+        .contact-modal__dialog {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            margin: auto;
+            background: #fff;
+            border-radius: 4px;
+            padding: 34px 28px 28px;
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
+            text-align: center;
+        }
+
+        .contact-modal__close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            border: 0;
+            background: transparent;
+            color: #777;
+            font-size: 32px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .contact-modal__icon {
+            width: 76px;
+            height: 76px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            font-size: 34px;
+            line-height: 76px;
+            text-align: center;
+        }
+
+        .contact-modal__icon.success {
+            color: #2d7d46;
+            background: #edf8f1;
+        }
+
+        .contact-modal__icon.error {
+            color: #b13c34;
+            background: #fff1f0;
+        }
+
+        .contact-modal h3 {
+            margin: 0 0 12px;
+        }
+
+        .contact-modal p {
+            margin: 0 0 10px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .contact-modal .btn {
+            margin-top: 12px;
+            min-width: 140px;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 991px) {
+            .contact-form {
+                padding: 30px 24px 24px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            #contact-form .container.md-padding {
+                padding-top: 38px;
+                padding-bottom: 30px;
+            }
+
+            .contact-form {
+                padding: 24px 18px 18px;
+            }
+
+            .form-actions {
+                display: block;
+            }
+
+            .form-actions .btn {
+                width: 100%;
+            }
+
+            .submit-note {
+                display: block;
+                margin-top: 10px;
+            }
+
+            .contact-modal__dialog {
+                padding: 30px 20px 24px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-
     <!-- ========= Header ========= -->
     <header id="main-header">
         <div class="clearfix">
-            <a href="../" class="header-brand"><img src="../images/Samuel-photo.png" class="background-image" alt="Samuel Fitzgerald"/></a>
+            <a href="../" class="header-brand"><img src="../images/Samuel-photo.png" class="background-image" alt="Samuel Fitzgerald" /></a>
             <div class="menu-toggle">
                 <div class="icon"></div>
             </div>
@@ -53,7 +314,7 @@
         <ul class="menu">
             <li><a href="../portfolio/">Portfolio</a></li>
             <li><a href="../about/">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="../contact/">Contact</a></li>
         </ul>
 
         <div class="shadow-helper"></div>
@@ -62,11 +323,8 @@
 
     <!-- ========= Hero Section ========= -->
     <section class="hero-section after-header" style="height:400px;" data-disable-resize>
-        <!-- Background Image -->
         <div class="background image" style="background-image: url('../images/big-backgrounds/contact_bcknd.jpg');" data-parallax="-0.5"></div>
-        
 
-        <!-- Section content -->
         <div class="content remove-padding">
             <div class="content-inner">
                 <h1 class="bold">Don't be shy!</h1>
@@ -75,86 +333,77 @@
     </section>
 
 
-    <!-- ========= Form Section ========= class="col-xs-12 col-sm-12 -->
+    <!-- ========= Form Section ========= -->
     <section id="contact-form">
-            <div class="container md-padding">
-                     
-               <div class="form-status row">
-                  <div id="successMessage" class="successmessage">
-                    <h2><i class="fa fa-check-circle-o"></i><p>Message sent successfully!<br />I'll get back to you shortly.</p></h2>
-                  </div>
-                  <div id="failureMessage" class="errormessage">
-                     <h2><i class="fa fa-exclamation-triangle"></i><p>There was a problem sending your message.<br />Please try again.</p></h2>
-                  </div>
-                </div> 
-                
-                <div class="contact-form z-depth-0" id="contactF">                	
- 
-                        <div class="row">                                   
-                            <form id="contactForm" action="https://formspree.io/f/xvzwjjqb" method="POST" accept-charset="UTF-8"></form>
-                            <input type="hidden" name="_subject" value="New message from samuelfitzgerald.com">
-                            <input type="hidden" name="_next" value="https://www.samuelfitzgerald.com/contact/?success=1">
-                            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">    
+        <div class="container md-padding">
+            <div class="contact-form z-depth-0" id="contactF">
+                <div class="row">
+                    <form id="contactForm" action="https://formspree.io/f/xvzwjjqb" method="POST" accept-charset="UTF-8" novalidate>
+                        <input type="hidden" name="_subject" value="New message from samuelfitzgerald.com">
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
 
-                                <div class="section-title wow fadeIn a1" data-wow-delay="0.1s">
-                                     <h2>Get In Contact</h2>
-                                 </div>                            
-                                <div id="msgSubmit" class="h3 text-danger">Fields not marked as "optional" are required!</div>
-                                
-                                <div class="input-field col m4 s12 wow fadeIn a2" data-wow-delay="0.2s">
-                                    <label for="senderName" class="h4">Full Name *</label>
-                                    <input type="text" class="form-control validate" name="senderName" id="senderName" required data-error="NEW ERROR MESSAGE">
-                                </div>
-                                <div class="input-field col m4 s12 wow fadeIn a4" data-wow-delay="0.4s">
-                                    <label for="senderEmail" class="h4">Email *</label>
-                                    <input type="email" class="form-control validate" name="senderEmail" id="senderEmail" required>                
-                                </div>
-                                <div class="input-field col m4 s12 wow fadeIn a4" data-wow-delay="0.4s">
-									<label for="seubject" class="h4">Subject (optional)</label>
-									<input type="text" name="subject" id="subject" class="form-control custom-form">
-								</div>
-                                <div class="input-field col m12 s12 wow fadeIn a6" data-wow-delay="0.6s">
-                                    <label for="message" class="h4">Message *</label>
-                                    <textarea name="message" id="message" class="form-control materialize-textarea validate" required></textarea>           
-                                </div>
-                                
-                                <div class="col m12 s12">
-                                    <button type="submit" id="form-submit" class="btn btn-default text-uppercase waves-effect wow fadeIn a7" data-wow-delay="0.7s">
-                                        <i class="fa fa-send" style="font-size:12px;"></i> Say Hello
-                                    </button>    
-                                </div>
-                            </form>                     
-                        </div> 
-                    </div>
-                    
+                        <div class="section-title wow fadeIn a1" data-wow-delay="0.1s">
+                            <h2>Get In Contact</h2>
+                        </div>
+
+                        <p class="form-help-text">
+                            Fields not marked as "optional" are required. Your message will be sent without leaving this page.
+                        </p>
+
+                        <div id="formStatus" class="form-status-inline" aria-live="polite"></div>
+
+                        <div class="input-field col m4 s12 wow fadeIn a2" data-wow-delay="0.2s">
+                            <label for="senderName" class="h4">Full Name *</label>
+                            <input type="text" class="form-control" name="senderName" id="senderName" required>
+                            <div class="field-error">Please enter your full name.</div>
+                        </div>
+
+                        <div class="input-field col m4 s12 wow fadeIn a4" data-wow-delay="0.4s">
+                            <label for="senderEmail" class="h4">Email *</label>
+                            <input type="email" class="form-control" name="senderEmail" id="senderEmail" required>
+                            <div class="field-error">Please enter a valid email address.</div>
+                        </div>
+
+                        <div class="input-field col m4 s12 wow fadeIn a4" data-wow-delay="0.4s">
+                            <label for="subject" class="h4">Subject (optional)</label>
+                            <input type="text" name="subject" id="subject" class="form-control custom-form">
+                        </div>
+
+                        <div class="input-field col m12 s12 wow fadeIn a6" data-wow-delay="0.6s">
+                            <label for="message" class="h4">Message *</label>
+                            <textarea name="message" id="message" class="form-control materialize-textarea" required></textarea>
+                            <div class="field-error">Please enter your message.</div>
+                        </div>
+
+                        <div class="col m12 s12">
+                            <div class="form-actions">
+                                <button type="submit" id="form-submit" class="btn btn-default text-uppercase waves-effect wow fadeIn a7" data-wow-delay="0.7s">
+                                    <i class="fa fa-send" style="font-size:12px;"></i> <span class="btn-label">Say Hello</span>
+                                </button>
+                                <span id="submitNote" class="submit-note">You’ll receive an on-page confirmation after submission.</span>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div> 
-        </section>
+            </div>
+        </div>
+    </section>
 
     <section style="padding:10px"></section>
 
     <!-- ========= Footer ========= -->
     <footer class="container-wrap footer">
         <div class="row">
-            <!-- 1st column -->
             <div class="col-sm-3 text-left">© 2026 Sam's Digital Practice</div>
 
-            <!-- 2nd column -->
             <div class="col-sm-6 text-center">
                 <ul class="bottom-menu">
                     <li><a href="../portfolio/">Portfolio</a></li>
                     <li><a href="../about/">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                                     
-                  <!--<li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="news.html">News</a></li>
-                    <li><a href="careers.html">Careers</a></li>-->
-                    
+                    <li><a href="../contact/">Contact</a></li>
                 </ul>
             </div>
 
-            <!-- 3rd column -->
             <div class="col-sm-3 text-right">
                 <ul class="socials-list">
                     <li><a href="https://www.linkedin.com/in/samuelfitzgerald" target="new"><i class="entypo linkedin" style="background-color:transparent"></i></a>
@@ -164,35 +413,198 @@
         </div>
     </footer>
 
+    <div id="successModal" class="contact-modal" aria-hidden="true">
+        <div class="contact-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="successModalTitle">
+            <button class="contact-modal__close" type="button" data-close="successModal" aria-label="Close success message">&times;</button>
+            <div class="contact-modal__icon success"><i class="fa fa-check"></i></div>
+            <h3 id="successModalTitle">Message Sent</h3>
+            <p>Thanks for reaching out.</p>
+            <p>Your message has been successfully delivered, and I’ll get back to you as soon as possible.</p>
+            <button class="btn btn-default text-uppercase" type="button" data-close="successModal">OK</button>
+        </div>
+    </div>
+
+    <div id="errorModal" class="contact-modal" aria-hidden="true">
+        <div class="contact-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="errorModalTitle">
+            <button class="contact-modal__close" type="button" data-close="errorModal" aria-label="Close error message">&times;</button>
+            <div class="contact-modal__icon error"><i class="fa fa-exclamation"></i></div>
+            <h3 id="errorModalTitle">Message Not Sent</h3>
+            <p>There was a problem sending your message.</p>
+            <p>Please review the required fields and try again. If the issue continues, connect through LinkedIn.</p>
+            <button class="btn btn-default text-uppercase" type="button" data-close="errorModal">Close</button>
+        </div>
+    </div>
 
     <!-- ========= JavaScript assets ========= -->
-    <!-- @exclude !><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.1.js"><\/script>')</script><!-- @endexclude -->
     <script src="../js/vendor/jquery-1.11.1.js"></script>
-
-    <!-- For faster page load we use CDN services, but if you want -->
-    <!-- you can include local-stored files from "js/assets" directory -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/social-likes/3.0.9/social-likes.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
     <script src="https://cdn.jsdelivr.net/g/isotope@2.0,jquery.slick@1.3,fastclick@1.0,countupjs@1.1,jquery.appear@0.3"></script>
-    
+
     <script src="../js/assets/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>
 
     <script src="../js/assets/jq.preloader.js"></script>
     <script src="../js/assets/jq.parallax.js"></script>
     <script src="../js/assets/jq.happy.js"></script>
     <script src="../js/assets/jq.matchHeight.js"></script>
     <script src="../js/assets/jquery.vide.js"></script>
-    <!--<script src="../js/assets/jq.vide.js"></script>-->
     <script src="../js/assets/smoothScroll.js"></script>
     <script src="../js/assets/isotope.packery.js"></script>
     <script src="../js/assets/bootstrap.min.js"></script>
-    
-    <script src="../js/assets/validator.min.js"></script> 
-    <script src="../js/init2.js"></script>
-    
     <script src="../js/main.js"></script>
+
+    <script>
+        (function () {
+            var form = document.getElementById('contactForm');
+            var submitButton = document.getElementById('form-submit');
+            var submitLabel = submitButton.querySelector('.btn-label');
+            var submitNote = document.getElementById('submitNote');
+            var statusBox = document.getElementById('formStatus');
+            var endpoint = form.getAttribute('action');
+
+            function showStatus(type, message) {
+                statusBox.className = 'form-status-inline show ' + type;
+                statusBox.textContent = message;
+            }
+
+            function clearStatus() {
+                statusBox.className = 'form-status-inline';
+                statusBox.textContent = '';
+            }
+
+            function setSubmitting(isSubmitting) {
+                submitButton.disabled = isSubmitting;
+                submitButton.style.opacity = isSubmitting ? '0.75' : '1';
+                submitLabel.textContent = isSubmitting ? 'Sending...' : 'Say Hello';
+                submitNote.textContent = isSubmitting
+                    ? 'Submitting your message...'
+                    : 'You’ll receive an on-page confirmation after submission.';
+            }
+
+            function validateEmail(value) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+            }
+
+            function toggleFieldError(field, hasError) {
+                var wrapper = field.closest('.input-field');
+                if (!wrapper) return;
+                if (hasError) {
+                    wrapper.classList.add('has-error');
+                } else {
+                    wrapper.classList.remove('has-error');
+                }
+            }
+
+            function validateForm() {
+                var nameField = document.getElementById('senderName');
+                var emailField = document.getElementById('senderEmail');
+                var messageField = document.getElementById('message');
+
+                var nameValid = nameField.value.trim() !== '';
+                var emailValid = validateEmail(emailField.value.trim());
+                var messageValid = messageField.value.trim() !== '';
+
+                toggleFieldError(nameField, !nameValid);
+                toggleFieldError(emailField, !emailValid);
+                toggleFieldError(messageField, !messageValid);
+
+                return nameValid && emailValid && messageValid;
+            }
+
+            function openModal(id) {
+                var modal = document.getElementById(id);
+                if (!modal) return;
+                modal.classList.add('show');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal(id) {
+                var modal = document.getElementById(id);
+                if (!modal) return;
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+
+                var stillOpen = document.querySelector('.contact-modal.show');
+                if (!stillOpen) {
+                    document.body.style.overflow = '';
+                }
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                clearStatus();
+
+                if (!validateForm()) {
+                    showStatus('error', 'Please complete the required fields and try again.');
+                    openModal('errorModal');
+                    return;
+                }
+
+                setSubmitting(true);
+
+                fetch(endpoint, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                    .then(function (response) {
+                        if (!response.ok) {
+                            throw new Error('Submission failed');
+                        }
+
+                        form.reset();
+                        Array.prototype.forEach.call(form.querySelectorAll('.has-error'), function (node) {
+                            node.classList.remove('has-error');
+                        });
+
+                        showStatus('success', 'Your message has been sent successfully.');
+                        openModal('successModal');
+                    })
+                    .catch(function () {
+                        showStatus('error', 'Your message could not be sent right now. Please try again.');
+                        openModal('errorModal');
+                    })
+                    .finally(function () {
+                        setSubmitting(false);
+                    });
+            });
+
+            Array.prototype.forEach.call(form.querySelectorAll('input, textarea'), function (field) {
+                field.addEventListener('input', function () {
+                    if (field.id === 'senderEmail') {
+                        toggleFieldError(field, field.value.trim() !== '' && !validateEmail(field.value.trim()));
+                    } else if (field.hasAttribute('required')) {
+                        toggleFieldError(field, field.value.trim() === '');
+                    }
+                });
+            });
+
+            Array.prototype.forEach.call(document.querySelectorAll('[data-close]'), function (button) {
+                button.addEventListener('click', function () {
+                    closeModal(button.getAttribute('data-close'));
+                });
+            });
+
+            Array.prototype.forEach.call(document.querySelectorAll('.contact-modal'), function (modal) {
+                modal.addEventListener('click', function (event) {
+                    if (event.target === modal) {
+                        closeModal(modal.id);
+                    }
+                });
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    closeModal('successModal');
+                    closeModal('errorModal');
+                }
+            });
+        })();
+    </script>
 
 </body>
 
